@@ -1,0 +1,177 @@
+// The video engine: ffmpeg compiled to WebAssembly, running in a worker inside the page.
+// The app only talks to this small interface, so the engine can be swapped (the tests plug in a native ffmpeg).
+//
+//   engine.load(onStatus)              start the engine (downloads ffmpeg-core.wasm the first time)
+//   engine.exec(args, {onProgress})    run ffmpeg -> { code, log }       (all paths are relative to the engine's own file system)
+//   engine.write(path, uint8)          put a file in the engine
+//   engine.read(path)                  get a file out -> Uint8Array
+//   engine.remove(path)                delete a file
+//   engine.mount(file) / unmount(p)    let ffmpeg read a File from disk without copying it into memory
+//   engine.terminate()                 stop at once (used by "Stop"); the next call starts it again
+
+const VENDOR = new URL('./vendor/', import.meta.url);
+
+// A clock that stands still while the page is in the background. A phone freezes a page (and its engine) when you switch to
+// another app; the time limits below must not count that, or the work would be given up as soon as you come back.
+// Without a page (tests in node) it is the normal clock.
+let hidMs = 0, hidSince = null, watching = false;
+function watchVisibility() {
+  if (watching || typeof document === 'undefined' || !document.addEventListener) return; watching = true;
+  const upd = () => { const h = document.visibilityState === 'hidden'; if (h && hidSince == null) hidSince = Date.now(); else if (!h && hidSince != null) { hidMs += Date.now() - hidSince; hidSince = null; } };
+  document.addEventListener('visibilitychange', upd); upd();
+}
+export function activeNow() { watchVisibility(); return Date.now() - hidMs - (hidSince != null ? Date.now() - hidSince : 0); }
+// like setTimeout, but only counts time the page is seen; returns a function that cancels it
+function activeTimeout(fn, ms) { const t0 = activeNow(), t = setInterval(() => { if (activeNow() - t0 >= ms) { clearInterval(t); fn(); } }, Math.min(1000, Math.max(5, ms / 4))); return () => clearInterval(t); }
+
+export const STALLED = 'The video engine stopped responding. On a phone this usually means it ran out of memory. It has been restarted. Try again, with a shorter or smaller clip.';
+export class WasmEngine {
+  constructor() { this.ff = null; this.cur = null; this.mounts = 0; this.loading = null; this.last = activeNow(); this.stallMs = 120000; this.pingMs = 6000; this.opMs = 90000; }
+
+  // A worker that has been killed (a phone that ran out of memory, a tab that was asleep) never answers again, and the page would wait for
+  // ever with its buttons locked. So: ask it a quick question before the first call after a pause, give up on a run that has been silent
+  // for stallMs, and put a time limit on file operations. Giving up restarts the engine; the next call loads a fresh one.
+  async alive() {
+    if (!this.ff) return false; if (activeNow() - this.last < 3000 || typeof this.ff.listDir !== 'function') return true;
+    let stop = () => {}; try { await Promise.race([this.ff.listDir('/'), new Promise((_, rej) => { stop = activeTimeout(() => rej(new Error('no answer')), this.pingMs); })]); this.last = activeNow(); return true; }
+    catch (e) { return false; } finally { stop(); }
+  }
+  async limit(p, ms = this.opMs) {
+    p.catch && p.catch(() => {}); let stop = () => {};
+    try { return await Promise.race([p, new Promise((_, rej) => { stop = activeTimeout(() => { this.terminate(); rej(new Error(STALLED)); }, ms); })]); } finally { stop(); }
+  }
+
+  async load(onStatus = () => {}) {
+    if (this.ff) { if (await this.alive()) return; this.terminate(); }
+    if (this.loading) return this.loading;
+    this.loading = (async () => {
+      onStatus('Loading the video engine (about 30 MB, only the first time)…');
+      let mod;
+      try { mod = await import(new URL('ffmpeg/index.js', VENDOR).href); }
+      catch (e) {
+        throw new Error('The video engine files are missing. Run  python3 get-ffmpeg.py  in the repository once (it downloads ffmpeg.wasm into docs/tools/vendor), then reload this page. (Using the Linux version? Install ffmpeg instead, for example  sudo apt install ffmpeg , and start Spektronautilus again.)');
+      }
+      const ff = new mod.FFmpeg();
+      ff.on('log', ({ message }) => { this.last = activeNow(); if (this.cur) this.cur.log.push(message); });
+      ff.on('progress', ({ progress, time }) => { this.last = activeNow(); const c = this.cur; if (!c || !c.onProgress) return; if (c.expect > 0 && time >= 0) c.onProgress(Math.min(1, time / 1e6 / c.expect)); else if (progress >= 0 && progress <= 1) c.onProgress(progress); });
+      await ff.load({ coreURL: new URL('core/ffmpeg-core.js', VENDOR).href, wasmURL: new URL('core/ffmpeg-core.wasm', VENDOR).href });
+      this.ff = ff;
+    })();
+    try { await this.loading; } finally { this.loading = null; }
+  }
+
+  async exec(args, { onProgress } = {}) {
+    await this.load();
+    const cur = this.cur = { log: [], onProgress, expect: args.expect || 0 };   // kept in a local: Stop (terminate) clears this.cur while ffmpeg is still running
+    this.last = activeNow(); let code, timer;
+    const stalled = new Promise((_, rej) => { timer = setInterval(() => { if (activeNow() - this.last > this.stallMs) { clearInterval(timer); this.terminate(); rej(new Error(STALLED)); } }, Math.min(1000, Math.max(5, this.stallMs / 4))); });
+    try { const run = this.ff.exec(args); run.catch && run.catch(() => {}); code = await Promise.race([run, stalled]); }
+    finally { clearInterval(timer); if (this.cur === cur) this.cur = null; }
+    return { code, log: cur.log };
+  }
+  async write(path, data) { await this.load(); await this.limit(this.ff.writeFile(path, data)); }
+  async read(path) { await this.load(); return await this.limit(this.ff.readFile(path)); }
+  async readBlob(path, type) { return new Blob([await this.read(path)], { type }); }
+  async remove(path) { try { await this.limit(this.ff.deleteFile(path)); } catch (e) { /* already gone */ } }
+
+  async mount(file) {
+    await this.load();
+    const dir = `m${++this.mounts}`;
+    await this.limit(this.ff.createDir('/' + dir));
+    await this.limit(this.ff.mount('WORKERFS', { files: [file] }, '/' + dir));
+    return `${dir}/${file.name}`;
+  }
+  async unmount(path) {
+    const dir = path.split('/')[0];
+    try { await this.limit(this.ff.unmount("/" + dir)); await this.limit(this.ff.deleteDir("/" + dir)); } catch (e) { /* ignore */ }
+  }
+  terminate() { try { this.ff && this.ff.terminate(); } catch (e) { /* ignore */ } this.ff = null; this.cur = null; }
+}
+
+// The local (Linux) version of Spektronautilus runs a small server on this computer that has the real ffmpeg.
+// It is much faster than the WebAssembly one and has no memory limit. On the web the server does not exist and the wasm engine is used.
+export class NativeEngine {
+  constructor(info) { this.info = info; this.kind = 'native'; this.mounts = 0; }
+  async load() {}
+  async _put(path, body) { const r = await fetch('/api/fs/' + encodeURI(path), { method: 'PUT', headers: { 'X-Spk': '1' }, body }); if (!r.ok) throw new Error('The local engine could not store a file (' + r.status + ').'); }
+  async exec(args, { onProgress } = {}) {
+    const r = await fetch('/api/exec', { method: 'POST', headers: { 'X-Spk': '1', 'Content-Type': 'application/json', ...(args.expect > 0 ? { 'X-Spk-Expect': String(args.expect) } : {}) }, body: JSON.stringify(args) });
+    if (!r.ok || !r.body) throw new Error('The local engine did not start (' + r.status + ').');
+    const rd = r.body.getReader(), dec = new TextDecoder(); let buf = '', out = null;
+    for (;;) {
+      const { value, done } = await rd.read(); if (done) break; buf += dec.decode(value, { stream: true });
+      let i; while ((i = buf.indexOf('\n')) >= 0) { const line = buf.slice(0, i); buf = buf.slice(i + 1); if (!line) continue; const m = JSON.parse(line); if (m.p != null) onProgress && onProgress(m.p); else out = m; }
+    }
+    if (!out) throw new Error('The local engine stopped. If you pressed Stop this is normal.');
+    return { code: out.code, log: out.log };
+  }
+  // AI upscaling: runs the separate program Video2X on this computer (only when it is installed; see info.v2x)
+  async v2x(args, { onProgress } = {}) {
+    const r = await fetch('/api/v2x-exec', { method: 'POST', headers: { 'X-Spk': '1', 'Content-Type': 'application/json' }, body: JSON.stringify(args) });
+    if (!r.ok || !r.body) throw new Error('The local engine did not start Video2X (' + r.status + ').');
+    const rd = r.body.getReader(), dec = new TextDecoder(); let buf = '', out = null;
+    for (;;) {
+      const { value, done } = await rd.read(); if (done) break; buf += dec.decode(value, { stream: true });
+      let i; while ((i = buf.indexOf('\n')) >= 0) { const line = buf.slice(0, i); buf = buf.slice(i + 1); if (!line) continue; const m = JSON.parse(line); if (m.p != null) onProgress && onProgress(m.p); else out = m; }
+    }
+    if (!out) throw new Error('The local engine stopped. If you pressed Stop this is normal.');
+    return { code: out.code, log: out.log };
+  }
+  async v2xGpus() { const r = await fetch('/api/v2x-gpus', { headers: { 'X-Spk': '1' } }); return r.ok ? r.json() : { ok: false }; }
+  // AI video upscaling with ReCaVSR: ComfyUI (a separate program, maybe on another computer) does the work; the local server talks to it
+  async comfyInfo() { try { const r = await fetch('/api/comfy', { headers: { 'X-Spk': '1' } }); this.comfy = r.ok ? await r.json() : { ok: false }; } catch (e) { this.comfy = { ok: false }; } return this.comfy; }
+  async comfySet(url) { try { const r = await fetch('/api/comfy', { method: 'POST', headers: { 'X-Spk': '1', 'Content-Type': 'application/json' }, body: JSON.stringify({ url }) }); this.comfy = r.ok ? await r.json() : { ok: false }; } catch (e) { this.comfy = { ok: false }; } return this.comfy; }
+  async comfyRun(opts, { onProgress } = {}) {
+    const r = await fetch('/api/comfy-exec', { method: 'POST', headers: { 'X-Spk': '1', 'Content-Type': 'application/json' }, body: JSON.stringify(opts) });
+    if (!r.ok || !r.body) throw new Error('The local engine could not reach ComfyUI (' + r.status + ').');
+    const rd = r.body.getReader(), dec = new TextDecoder(); let buf = '', out = null;
+    for (;;) {
+      const { value, done } = await rd.read(); if (done) break; buf += dec.decode(value, { stream: true });
+      let i; while ((i = buf.indexOf('\n')) >= 0) { const line = buf.slice(0, i); buf = buf.slice(i + 1); if (!line) continue; const m = JSON.parse(line); if (m.p != null) onProgress && onProgress(m.p); else out = m; }
+    }
+    if (!out) throw new Error('The local engine stopped. If you pressed Stop this is normal.');
+    return { code: out.code, log: out.log };
+  }
+  async write(path, data) { await this._put(path, data); }
+  async read(path) { const r = await fetch('/api/fs/' + encodeURI(path), { headers: { 'X-Spk': '1' } }); if (!r.ok) throw new Error('Could not read ' + path + ' from the local engine.'); return new Uint8Array(await r.arrayBuffer()); }
+  async readBlob(path, type) { const r = await fetch('/api/fs/' + encodeURI(path), { headers: { 'X-Spk': '1' } }); if (!r.ok) throw new Error('Could not read ' + path + ' from the local engine.'); return new Blob([await r.blob()], { type }); }      // the browser keeps it on disk, not in script memory
+  async sensors() { try { const r = await fetch('/api/sensors', { headers: { 'X-Spk': '1' } }); return r.ok ? r.json() : { ok: false }; } catch (e) { return { ok: false }; } }
+  async gpu() { try { const r = await fetch('/api/gpu', { headers: { 'X-Spk': '1' } }); return r.ok ? r.json() : { ok: false }; } catch (e) { return { ok: false }; } }
+  async remove(path) { try { await fetch('/api/fs/' + encodeURI(path), { method: 'DELETE', headers: { 'X-Spk': '1' } }); } catch (e) { /* ignore */ } }
+  async mount(file) { const p = `m${++this.mounts}/${file.name}`; await this._put(p, file); return p; }        // the File is streamed from disk, not read into memory
+  async unmount(path) { await this.remove(path.split('/')[0]); }
+  terminate() { try { fetch('/api/kill', { method: 'POST', headers: { 'X-Spk': '1' }, keepalive: true }); } catch (e) { /* ignore */ } }
+}
+
+// Picks the native engine when the local server offers one, otherwise the WebAssembly engine.
+class AutoEngine {
+  constructor() { this.impl = null; this.kind = ''; this.picking = null; }
+  async pick() {
+    if (this.impl) return this.impl;
+    this.picking = this.picking || (async () => {
+      let info = null;
+      try { const r = await fetch('/api/native', { headers: { 'X-Spk': '1' } }); if (r.ok) { const j = await r.json(); if (j && j.ok) info = j; } } catch (e) { /* not the local version */ }
+      this.impl = info ? new NativeEngine(info) : new WasmEngine(); this.kind = info ? 'native' : 'wasm'; this.info = info;
+    })();
+    await this.picking; return this.impl;
+  }
+  async load(onStatus) { const e = await this.pick(); return e.load(onStatus); }
+  async exec(a, o) { return (await this.pick()).exec(a, o); }
+  async v2x(a, o) { const e = await this.pick(); if (!e.v2x) throw new Error('AI upscaling needs the Linux (local) version.'); return e.v2x(a, o); }
+  async v2xGpus() { const e = await this.pick(); return e.v2xGpus ? e.v2xGpus() : { ok: false }; }
+  get comfy() { return this.impl && this.impl.comfy; }
+  async comfyInfo() { const e = await this.pick(); return e.comfyInfo ? e.comfyInfo() : { ok: false }; }
+  async comfySet(u) { const e = await this.pick(); return e.comfySet ? e.comfySet(u) : { ok: false }; }
+  async comfyRun(o, x) { const e = await this.pick(); if (!e.comfyRun) throw new Error('AI video upscaling needs the Linux (local) version.'); return e.comfyRun(o, x); }
+  async write(p, d) { return (await this.pick()).write(p, d); }
+  async read(p) { return (await this.pick()).read(p); }
+  async readBlob(p, t) { return (await this.pick()).readBlob(p, t); }
+  async gpu() { const e = await this.pick(); return e.gpu ? e.gpu() : { ok: false }; }
+  async sensors() { const e = await this.pick(); return e.sensors ? e.sensors() : { ok: false }; }
+  async remove(p) { return (await this.pick()).remove(p); }
+  async mount(f) { return (await this.pick()).mount(f); }
+  async unmount(p) { return (await this.pick()).unmount(p); }
+  terminate() { this.impl && this.impl.terminate(); }
+}
+
+export function getEngine() { return window.__VJ_ENGINE__ || new AutoEngine(); }

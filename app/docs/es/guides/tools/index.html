@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Herramientas de loops: convierte, arregla, filtra y organiza tus loops | Spektronautilus</title>
+<meta name="description" content="Herramientas gratuitas en el navegador para loops de VJ: convierte GIF y video, crea loops perfectos, recorta, cambia el tamaño, añade looks, encuentra loops gratis y crea paquetes.">
+
+<link rel="canonical" href="https://munkenbissniss.github.io/spektronautilus/es/guides/tools/">
+<link rel="alternate" hreflang="en" href="https://munkenbissniss.github.io/spektronautilus/guides/tools/"><link rel="alternate" hreflang="de" href="https://munkenbissniss.github.io/spektronautilus/de/guides/tools/"><link rel="alternate" hreflang="es" href="https://munkenbissniss.github.io/spektronautilus/es/guides/tools/"><link rel="alternate" hreflang="no" href="https://munkenbissniss.github.io/spektronautilus/no/guides/tools/"><link rel="alternate" hreflang="pt" href="https://munkenbissniss.github.io/spektronautilus/pt/guides/tools/"><link rel="alternate" hreflang="x-default" href="https://munkenbissniss.github.io/spektronautilus/guides/tools/">
+<meta property="og:site_name" content="Spektronautilus"><meta property="og:type" content="website"><meta property="og:title" content="Herramientas de loops: convierte, arregla, filtra y organiza tus loops | Spektronautilus"><meta property="og:description" content="Herramientas gratuitas en el navegador para loops de VJ: convierte GIF y video, crea loops perfectos, recorta, cambia el tamaño, añade looks, encuentra loops gratis y crea paquetes."><meta property="og:url" content="https://munkenbissniss.github.io/spektronautilus/es/guides/tools/"><meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#14182b">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Spektro"><meta name="apple-mobile-web-app-status-bar-style" content="default">
+<style>:root{--bt:#c4155a;--okt:#0b7358;--bg:#f3f4f8;--ink:#14182b;--mute:#5a607a;--line:#d5d8e6;--panel:#fff;--a:#2b3af0;--b:#ff3d81;--ok:#12906f;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bt:#ff6fa3;--okt:#3fd6a4;--bg:#10122a;--ink:#eceefb;--mute:#a0a6c8;--line:#2a2e57;--panel:#171a3a;--a:#7f8bff;--b:#ff6fa3;--ok:#3fd6a4;color-scheme:dark}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--a)}a:focus-visible,summary:focus-visible,button:focus-visible{outline:3px solid var(--b);outline-offset:2px;border-radius:6px}
+.wrap{max-width:1060px;margin:0 auto;padding:0 20px}
+header.top{border-bottom:1px solid var(--line);background:var(--bg);position:sticky;top:0;z-index:5}
+header.top .wrap{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding-top:10px;padding-bottom:10px}
+.brand{display:flex;align-items:center;gap:8px;font-weight:800;letter-spacing:-.02em;text-decoration:none;color:var(--ink);font-size:1.1rem}
+.brand svg{width:36px;height:36px}
+nav.main{display:flex;gap:2px 14px;flex-wrap:wrap;flex:1}
+nav.main a{color:var(--ink);text-decoration:none;padding:4px 2px;border-bottom:2px solid transparent;font-size:.95rem}
+nav.main a:hover,nav.main a[aria-current]{border-color:var(--b)}
+.ld .ddm a{color:var(--ink);text-decoration:none}
+.ld{position:relative;margin-left:auto;font-size:.85rem}.ld .ddb{border:1px solid var(--line);border-radius:999px;padding:3px 11px;color:var(--mute)}.ld .ddm{left:auto;right:0;min-width:140px}
+main{padding:28px 0 40px}
+h1{font-size:2.2rem;letter-spacing:-.03em;line-height:1.15;margin:6px 0 8px}h2{font-size:1.25rem;margin:26px 0 8px}h3{font-size:1.05rem;margin:0 0 4px}
+.lead{font-size:1.15rem;color:var(--mute);max-width:46em;margin:0 0 20px}
+.hero{padding:26px 0 8px}.hero h1{font-size:clamp(2.2rem,6vw,3.6rem)}
+.hero .tag{font-weight:700;color:var(--bt);letter-spacing:.04em;text-transform:uppercase;font-size:.85rem}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+.btn{font:inherit;display:inline-block;cursor:pointer;border:2px solid var(--ink);background:transparent;color:var(--ink);padding:7px 18px;border-radius:999px;font-weight:700;text-decoration:none}
+.btn.main{background:var(--ink);color:var(--bg)}.btn:hover{border-color:var(--b)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin:12px 0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;color:inherit;text-decoration:none;display:block}
+a.card:hover{border-color:var(--b)}.card p{margin:0;color:var(--mute);font-size:.93rem}
+.badge{display:inline-block;font-size:.72rem;font-weight:700;border:1px solid currentColor;border-radius:999px;padding:0 8px;margin-left:6px;vertical-align:middle;color:var(--mute)}
+.badge.live{color:var(--okt)}
+ul.spec{padding-left:1.2em}ul.spec li{margin:3px 0}
+details{border-top:1px solid var(--line);padding:8px 0}summary{cursor:pointer;font-weight:700}
+.note{border-left:4px solid var(--b);background:var(--panel);padding:10px 14px;border-radius:0 10px 10px 0;color:var(--mute);margin:16px 0}
+.pack{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.post time{color:var(--mute);font-size:.85rem}.post .body p{max-width:46em}
+footer{border-top:1px solid var(--line);color:var(--mute);font-size:.88rem;padding:18px 0 30px}
+footer .wrap{display:flex;gap:10px 24px;flex-wrap:wrap;justify-content:space-between}
+@media(max-width:760px){header.top .wrap{gap:6px 12px}nav.main{flex-basis:100%;order:3;gap:0 14px}h1{font-size:1.8rem}}
+
+.qn{display:inline-block;margin-left:6px;min-width:1.3em;padding:0 6px;border-radius:999px;background:var(--b,#ff3d81);color:#fff;font-size:.75em;font-weight:800;text-align:center}.qn[hidden]{display:none}
+
+/* guides */
+.docs{display:grid;grid-template-columns:230px minmax(0,1fr);gap:34px;align-items:start}
+.dnav{position:sticky;top:76px;max-height:calc(100vh - 96px);overflow:auto;font-size:.93rem}
+.dnav summary{font-weight:800;list-style:none;cursor:pointer;padding:6px 0}.dnav summary::-webkit-details-marker{display:none}
+.dnav details{border:0;padding:0}
+.dg{margin:8px 0 14px}.dgt{font-size:.74rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--mute);margin:0 0 4px}
+.dnav a{display:flex;gap:8px;align-items:center;padding:6px 10px;margin:1px 0;border-radius:9px;color:var(--ink);text-decoration:none;border-left:3px solid transparent}
+.dnav a:hover{background:var(--panel)}.dnav a[aria-current]{background:var(--panel);border-left-color:var(--b);font-weight:700}
+.doc{min-width:0;max-width:47em}.doc h1{font-size:2rem;display:flex;gap:12px;align-items:center}
+.gi{font-size:1.5em;line-height:1}.doc h1 .gi{font-size:1.1em}
+.crumb{font-size:.88rem;color:var(--mute);margin:0 0 4px}.crumb a{color:var(--mute)}
+.doc .body h2{margin:34px 0 8px;padding-top:6px;border-top:1px solid var(--line);scroll-margin-top:80px}.doc .body h3{margin:20px 0 4px;scroll-margin-top:80px}
+.doc .body p,.doc .body li{max-width:44em}.doc .body li{margin:4px 0}.doc .body ul,.doc .body ol{padding-left:1.35em}
+.doc .body code{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:0 5px;font-size:.92em}
+.tip{border-left:4px solid var(--ok);background:var(--panel);padding:10px 14px;border-radius:0 10px 10px 0;margin:14px 0}
+.toc{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin:12px 0 4px;display:flex;flex-wrap:wrap;gap:4px 18px}
+.toc .dgt{flex-basis:100%}.toc a{color:var(--ink);text-decoration:none;font-size:.93rem;border-bottom:1px dashed var(--line)}.toc a:hover{border-color:var(--b)}
+.gcard{position:relative;transition:transform .12s,border-color .12s}.gcard:hover{transform:translateY(-2px)}.gcard .gi{font-size:1.8rem;margin-bottom:6px}
+.gcard .more{display:inline-block;margin-top:10px;font-weight:700;font-size:.88rem;color:var(--a)}
+.tasks{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin:10px 0 6px}
+.task{display:flex;gap:12px;align-items:center;padding:12px 14px;background:var(--panel);border:1px solid var(--line);border-radius:12px;color:var(--ink);text-decoration:none;font-weight:600}
+.task span{font-size:1.4rem}.task:hover{border-color:var(--b)}
+.gfb{margin:34px 0 8px;display:flex;gap:6px 12px;align-items:center;flex-wrap:wrap}.gfb .btn{padding:3px 14px;font-size:.9rem}
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0 6px}
+.pg{display:block;padding:12px 16px;border:1px solid var(--line);border-radius:12px;background:var(--panel);color:var(--ink);text-decoration:none;font-weight:700}.pg small{display:block;color:var(--mute);font-weight:500}
+.pg.next{text-align:right;grid-column:2}.pg:hover{border-color:var(--b)}
+footer .spkx{opacity:.85}
+@media(max-width:899px){.docs{grid-template-columns:1fr;gap:10px}.dnav{position:static;max-height:none;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:2px 14px}.dnav summary::after{content:" ▾"}.doc h1{font-size:1.6rem}}
+@media(min-width:900px){.dnav summary{pointer-events:none}}
+.ui{font-weight:600;background:var(--panel);border:1px solid var(--line);border-radius:7px;padding:0 6px;overflow-wrap:anywhere}
+kbd{font:inherit;font-size:.88em;font-weight:700;background:var(--panel);border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:0 6px}
+
+/* menu dropdown, footer columns, dock */
+.dd{position:relative}
+.ddb{font:inherit;font-size:.95rem;color:var(--ink);background:none;border:0;border-bottom:2px solid transparent;padding:4px 2px;cursor:pointer}
+.ddb:hover,.ddb[aria-expanded=true],.ddb[data-current]{border-color:var(--b)}
+.ddm{position:absolute;left:-10px;top:100%;min-width:190px;margin-top:6px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:6px;box-shadow:0 10px 30px rgba(0,0,0,.18);z-index:20}
+.ddm[hidden]{display:none}.ddm a{display:block;padding:8px 12px;border-radius:8px;border-bottom:0!important}.ddm a:hover,.ddm a[aria-current]{background:var(--bg)}
+nav.main .ddm a{color:var(--ink)}
+footer .fcols{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:18px 30px;padding-bottom:16px;margin-bottom:14px;border-bottom:1px solid var(--line)}
+footer .fcols a{display:block;color:var(--ink);text-decoration:none;padding:2px 0}footer .fcols a:hover{text-decoration:underline}
+footer .fbase{align-items:center}
+.spkdock{position:fixed;right:10px;bottom:10px;z-index:9985;display:flex;gap:8px;align-items:center}
+.spkdock button{font:inherit;font-size:.82rem;cursor:pointer;color:#e8eaff;background:rgba(20,24,43,.88);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:5px 12px;opacity:.8}
+.spkdock button:hover,.spkdock button:focus-visible{opacity:1}.spkdock .up{width:34px;height:34px;padding:0;font-size:1rem;display:none}.spkdock .up.on{display:block}
+.spkdock .qn{background:#ff6fa3;color:#14182b;margin-left:6px}
+
+/* front page */
+.hero .lead{max-width:40em}.mute{color:var(--mute)}
+.goals{grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px}
+.goal{display:flex;flex-direction:column;gap:2px;transition:transform .12s,border-color .12s}.goal:hover{transform:translateY(-2px)}
+.goal .gi{font-size:2rem;line-height:1;margin-bottom:6px}.goal p{flex:1}.goal .more{margin-top:12px;font-weight:700;font-size:.9rem;color:var(--a)}
+ol.flow{list-style:none;margin:12px 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;counter-reset:s}
+ol.flow li{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 16px 14px 16px}
+ol.flow .n{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--ink);color:var(--bg);font-weight:800;font-size:.9rem;margin-bottom:6px}
+ol.flow p{margin:0 0 8px;color:var(--mute);font-size:.93rem}ol.flow a{font-weight:700;font-size:.9rem}
+@media(min-width:900px){ol.flow li:not(:last-child)::after{content:"→";position:absolute;right:-13px;top:50%;transform:translateY(-50%);color:var(--b);font-weight:800;z-index:1;background:var(--bg);border-radius:50%;width:22px;height:22px;display:grid;place-items:center;font-size:.9rem}}
+.kits{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.kit{display:inline-flex;gap:8px;align-items:center;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:var(--panel);color:var(--ink);text-decoration:none;font-weight:600;font-size:.93rem}.kit:hover{border-color:var(--b)}
+ul.who{list-style:none;display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:10px 0}ul.who li{padding:5px 14px;border-radius:999px;background:var(--ink);color:var(--bg);font-weight:600;font-size:.9rem}
+.trust{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:30px 0 8px;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.trust .gi{font-size:1.5rem}.trust p{margin:0;color:var(--mute);font-size:.93rem}
+.split{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin:24px 0}.split .card p{margin:6px 0}
+.easy{font-size:.93rem;margin-top:8px}
+</style>
+<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "WebSite", "name": "Spektronautilus", "url": "https://munkenbissniss.github.io/spektronautilus/", "inLanguage": "es"}, {"@context": "https://schema.org", "@type": "TechArticle", "headline": "Herramientas de loops: convierte, arregla, filtra y organiza tus loops", "description": "Herramientas gratuitas en el navegador para loops de VJ: convierte GIF y video, crea loops perfectos, recorta, cambia el tamaño, añade looks, encuentra loops gratis y crea paquetes.", "inLanguage": "es", "url": "https://munkenbissniss.github.io/spektronautilus/es/guides/tools/", "publisher": {"@type": "Organization", "name": "Spektronautilus"}}]</script>
+<script>(function(){try{var q=location.search.indexOf('desktop=1')>-1;if(q)localStorage.setItem('spk_desktop','1');
+var m=!localStorage.getItem('spk_desktop')&&matchMedia('(pointer:coarse) and (max-width:900px)').matches;if(!m)return;
+var map=[[/(^|\/)mixer\/$/,'$1mixer-mobile/'],[/(^|\/)live-dj\/$/,'$1live-mobile/'],[/(^|\/)vj-pad\/$/,'$1vj-mobile/']];
+document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('a[data-app]').forEach(function(a){map.forEach(function(r){a.href=a.href.replace(r[0],r[1])})})})}catch(e){}})();</script>
+<script>document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('.dd,.ld').forEach(function(d){var b=d.querySelector('.ddb'),m=d.querySelector('.ddm');function set(o){m.hidden=!o;b.setAttribute('aria-expanded',o?'true':'false')}b.addEventListener('click',function(e){e.stopPropagation();var o=m.hidden;document.querySelectorAll('.ddm').forEach(function(x){x.hidden=true});set(o)});document.addEventListener('click',function(e){if(!d.contains(e.target))set(false)});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden){set(false);b.focus()}});d.addEventListener('focusout',function(e){if(!d.contains(e.relatedTarget))set(false)})})});</script>
+<script>document.addEventListener('DOMContentLoaded',function(){function u(){try{var o=JSON.parse(localStorage.getItem('spk_q')||'{}'),n=Date.now()-(o.t||0)<30000?o.n||0:0;document.querySelectorAll('.qn').forEach(function(b){b.hidden=!n;b.textContent=n})}catch(e){}}u();addEventListener('storage',u);setInterval(u,4000)});try{localStorage.setItem('spk_lang','es')}catch(e){}</script>
+<script src="../../../shared/sw-register.js" defer></script>
+<script src="../../../shared/extras.js" data-dock="1" defer></script>
+</head>
+<body>
+<a href="#main" class="sr" style="position:absolute;left:-999px">Saltar al contenido</a>
+<header class="top"><div class="wrap">
+<a class="brand" href="../../../es/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><circle cx="34.92" cy="34.95" r="1.52" fill="#7a3cff"/><circle cx="37.08" cy="33.92" r="1.61" fill="#7a3cff"/><circle cx="39.66" cy="34.37" r="1.71" fill="#2b3af0"/><circle cx="41.69" cy="36.43" r="1.82" fill="#2b3af0"/><circle cx="42.18" cy="39.55" r="1.94" fill="#2b3af0"/><circle cx="40.63" cy="42.65" r="2.07" fill="#2b3af0"/><circle cx="37.27" cy="44.44" r="2.22" fill="#19c3e6"/><circle cx="33.12" cy="43.89" r="2.38" fill="#19c3e6"/><circle cx="29.77" cy="40.76" r="2.56" fill="#19c3e6"/><circle cx="28.78" cy="35.82" r="2.75" fill="#2fd39a"/><circle cx="31.04" cy="30.78" r="2.96" fill="#2fd39a"/><circle cx="36.27" cy="27.72" r="3.2" fill="#2fd39a"/><circle cx="42.9" cy="28.32" r="3.45" fill="#2fd39a"/><circle cx="48.43" cy="33.08" r="3.73" fill="#ffd23f"/><circle cx="50.34" cy="40.86" r="4.04" fill="#ffd23f"/><circle cx="47.08" cy="49.03" r="4.38" fill="#ffd23f"/><circle cx="38.96" cy="54.25" r="4.75" fill="#ff8a3d"/><circle cx="28.38" cy="53.73" r="5.16" fill="#ff8a3d"/><circle cx="19.26" cy="46.53" r="5.6" fill="#ff8a3d"/><circle cx="15.71" cy="34.27" r="6.09" fill="#ff8a3d"/><circle cx="20.35" cy="21.06" r="6.63" fill="#ff3d81"/><circle cx="32.92" cy="12.22" r="7.22" fill="#ff3d81"/></svg><span>Spektronautilus</span></a>
+<nav class="main" aria-label="Main"><a href="../../../es/">Inicio</a><div class="dd"><button type="button" class="ddb" aria-expanded="false" aria-haspopup="true">Mezcladores <span aria-hidden="true">▾</span></button><div class="ddm" hidden><a href="../../../es/vj-mixer/">Mezclador VJ</a><a href="../../../es/magic-mixer/">Mezclador mágico</a><a href="../../../es/live-mixer/">Video DJ</a></div></div><a href="../../../es/tools/">Herramientas</a><a href="../../../es/packs/">Packs de loops</a><a href="../../../es/guides/" aria-current=page>Guías</a></nav>
+<div class="ld" role="navigation" aria-label="Idioma"><button type="button" class="ddb" aria-expanded="false" aria-haspopup="true" aria-label="Idioma">🌐 ES <span aria-hidden="true">▾</span></button><div class="ddm" hidden><a href="../../../guides/tools/" hreflang="en" lang="en">English</a><a href="../../../de/guides/tools/" hreflang="de" lang="de">Deutsch</a><a href="../../../es/guides/tools/" hreflang="es" lang="es" aria-current=true>Español</a><a href="../../../no/guides/tools/" hreflang="no" lang="no">Norsk</a><a href="../../../pt/guides/tools/" hreflang="pt" lang="pt">Português</a></div></div>
+</div></header>
+<main id="main"><div class="wrap">
+<div class="docs"><nav class="dnav" aria-label="Todas las guías"><details><summary>Todas las guías</summary><div class="dg"><div class="dgt">Empieza aquí</div><a href="../../../es/guides/start/"><span>🧭</span> Empieza aquí</a></div><div class="dg"><div class="dgt">Los mezcladores</div><a href="../../../es/guides/vj-mixer/"><span>🎚️</span> Mezclador VJ</a><a href="../../../es/guides/magic-mixer/"><span>🪄</span> Mezclador mágico de video</a><a href="../../../es/guides/video-dj/"><span>🎛️</span> Video DJ</a></div><div class="dg"><div class="dgt">Herramientas de loops</div><a href="../../../es/guides/tools/" aria-current=page><span>🧰</span> Herramientas de loops</a></div><div class="dg"><div class="dgt">Conviene saber</div><a href="../../../es/guides/queue/"><span>📋</span> Cola</a><a href="../../../es/guides/show-check/"><span>✅</span> ¿Listo para el show?</a><a href="../../../es/guides/offline-linux/"><span>📲</span> Sin internet y Linux</a><a href="../../../es/guides/help/"><span>🛟</span> Ayuda y solución de problemas</a></div></details></nav><script>(function(){var d=document.querySelector('.dnav details');if(d&&matchMedia('(min-width:900px)').matches)d.open=true})()</script><article class="doc"><p class="crumb"><a href="../../../es/guides/">Guías</a> › Herramientas de loops</p><h1><span class="gi">🧰</span> Herramientas de loops: convierte, arregla, filtra y organiza tus loops</h1><p class="lead">Herramientas gratuitas en el navegador para loops de VJ: convierte GIF y video, crea loops perfectos, recorta, cambia el tamaño, añade looks, encuentra loops gratis y crea paquetes.</p><div class="cta"><a class="btn main" href="../../../tools/app/">Abrir la herramienta</a></div><nav class="toc" aria-label="En esta página"><div class="dgt">En esta página</div><a href="#how">Cómo funcionan las herramientas</a><a href="#gif2mp4">GIF to MP4</a><a href="#loop">Make loops</a><a href="#convert">Convert</a><a href="#search">Find loops</a><a href="#filters">Filters</a><a href="#crop">Crop &amp; trim</a><a href="#sizes">Sizes</a><a href="#pro">HAP / ProRes</a><a href="#ai">Ampliar</a><a href="#slowmo">Cámara lenta</a><a href="#catalog">Catalogue</a><a href="#pack">Loop pack</a><a href="#hospital">Loop Hospital</a><a href="#upload">Subir a Vimeo</a><a href="#know">Conviene saber</a></nav><div class="body"><h2 id="how">Cómo funcionan las herramientas</h2>
+<p>Abre las herramientas y elige una de la lista. Todas siguen el mismo patrón:</p>
+<ol><li><strong>Añade archivos.</strong> Suelta archivos o una carpeta, o pulsa <span class="ui">elegir archivos</span>.</li><li><strong>Ajustes.</strong> Unas pocas opciones sencillas. Los ajustes técnicos están bajo <span class="ui">Avanzado</span>.</li><li><strong>Empieza.</strong> El trabajo se convierte en tareas de una lista. Puedes poner muchos archivos en cola y dejar que siga. Mira la <a href="../../../es/guides/queue/">Cola</a>.</li><li><strong>Descarga.</strong> Los resultados son archivos mp4 normales que puedes usar en cualquier programa de VJ.</li></ol>
+<p>Todo funciona dentro de tu navegador y tus archivos nunca salen de tu ordenador. Los archivos grandes no son un problema, se leen directamente del disco. En Chrome o Edge también puedes elegir una carpeta y guardar cada resultado directamente en ella (<span class="ui">Guardar cada archivo directamente en una carpeta que yo elija</span>).</p>
+<p class="tip">La versión del navegador es más lenta que un programa de escritorio (unas 5 a 10 veces). Para muchos archivos 4K grandes usa la <a href="../../../es/guides/offline-linux/#linux">versión para Linux</a>, que usa el motor rápido de tu propio ordenador.</p>
+<h2 id="gif2mp4">GIF to MP4</h2>
+<p>Convierte muchos GIF a mp4 fluido de una vez, también GIF con transparencia. Para GIF transparentes, elige un color de fondo (negro, blanco o #rrggbb). <span class="ui">Mantener la forma, solo reducir</span> mantiene pequeños los GIF pequeños. <a href="../../../tools/app/#gif2mp4">Abrir esta herramienta</a>.</p>
+<h2 id="loop">Make loops</h2>
+<p>Comprueba si un clip ya enlaza como loop. Si es así, lo deja como está. Si no, puede recortarlo hasta el mejor punto de enlace, reproducirlo hacia delante y luego hacia atrás, o fundir el final con el principio. <span class="ui">Auto: conservar los buenos loops y arreglar el resto</span> elige por ti: conserva los buenos loops y arregla los demás. También puedes fijar una duración mínima, porque al Mezclador mágico le gustan los loops de 16 segundos o más. <a href="../../../tools/app/#loop">Abrir esta herramienta</a>.</p>
+<h2 id="convert">Convert</h2>
+<p>Convierte mov, webm, mkv, gif y otros formatos en mp4 adecuado para VJ. Elige tamaño, fotogramas por segundo y calidad, y usa una <span class="ui">Plantilla de nombre</span> para renombrar en bloque. La plantilla entiende códigos como <code>{name}</code>, <code>{n}</code>, <code>{n2}</code> (un número de dos cifras), <code>{w}</code>, <code>{h}</code>, <code>{res}</code>, <code>{fps}</code>, <code>{dur}</code> y <code>{date}</code>. También puedes quitar espacios, pasar a minúsculas y sustituir æøå. <a href="../../../tools/app/#convert">Abrir esta herramienta</a>.</p>
+<h2 id="search">Find loops</h2>
+<p>Busca loops en fuentes gratuitas, y descárgalos y conviértelos de una vez. Internet Archive, Wikimedia Commons, NASA y los Prelinger Archives funcionan sin cuenta. Pexels y Pixabay tienen muchos loops ya hechos, pero necesitan una clave gratuita, que se consigue en un minuto. La clave se guarda solo en tu navegador y solo se envía a ese sitio.</p>
+<ul><li>De forma predeterminada, la búsqueda muestra solo clips cortos (menos de 60 segundos), oculta el material gubernamental y militar (US Army, NASA y similares) y pone primero los loops y las animaciones GIF. Los GIF a menudo ya hacen bucle y se convierten a mp4 al descargarlos. NASA está desactivada por defecto: márcala si quieres imágenes del espacio. Cada filtro tiene una casilla, y el mensaje bajo la búsqueda indica cuántos resultados se ocultaron.</li><li>El autor y la licencia de cada descarga se guardan en un archivo llamado <code>credits.csv</code>. Las licencias varían según el clip, así que compruébalas antes de usar un clip en público.</li><li>Algunos sitios no permiten que una página web descargue sus archivos. Entonces usa <span class="ui">Abrir página</span>, descarga el clip tú mismo y suéltalo en <span class="ui">Convertir</span>.</li><li>Descarga solo lo que tengas derecho a usar.</li></ul>
+<p><a href="../../../tools/app/#search">Abrir esta herramienta</a>.</p>
+<h2 id="filters">Filters</h2>
+<p>Añade looks de estilo VJ a una carpeta entera de loops: brillo, glitch, espejo, caleidoscopio, VHS, duotono, pixelado y estelas. También hay ocho estilos de color: Blue Dream, Purple Dream, Dark Future, Sepia, The Matrix, Las Vegas, Coal y Grainy. Pon el control <span class="ui">Intensidad</span> en 50 para el aspecto de referencia; más bajo es un toque suave, más alto lleva los colores más lejos. Pulsa <span class="ui">Vista previa en el primer clip</span> para ver cada look antes de aplicarlos. Cada archivo recibe un clip nuevo por cada look que elijas. <a href="../../../tools/app/#filters">Abrir esta herramienta</a>.</p>
+<h2 id="crop">Crop &amp; trim</h2>
+<p>Recorta clips a formato panorámico, vertical o cuadrado, y recorta el principio y el final, para una carpeta entera de una vez. Elige cómo encajar: recortar al marco exacto o añadir barras negras. <a href="../../../tools/app/#crop">Abrir esta herramienta</a>.</p>
+<h2 id="sizes">Sizes</h2>
+<p>Crea un proxy pequeño, 720p, 1080p y 4K de cada clip de una vez. Los tamaños mayores que el original se omiten. <a href="../../../tools/app/#sizes">Abrir esta herramienta</a>.</p>
+<h2 id="pro">HAP / ProRes</h2>
+<p>Crea formatos profesionales para Resolume, VDMX, Millumin y editores de video. Necesita la <a href="../../../es/guides/offline-linux/#linux">versión local para Linux</a>, porque usa ffmpeg en tu propio ordenador. <a href="../../../tools/app/#pro">Abrir esta herramienta</a>.</p>
+<h2 id="ai">Ampliar</h2>
+<p>Hace los clips más grandes y nítidos. Elige un <span class="ui">Método</span>:</p>
+<ul><li><strong>Nítido</strong> es el predeterminado. Amplía con un cambio de tamaño limpio y un ligero realce (se ajusta con <span class="ui">Nitidez</span>). Es rápido y funciona en todas partes, incluso en el navegador. En el navegador el resultado puede ser como máximo 4K.</li><li><strong>IA</strong> inventa detalles nuevos con el programa gratuito Video2X. Solo funciona en la versión local, en <a href="../../../es/guides/offline-linux/#linux">Linux</a> o Windows, y necesita una tarjeta gráfica compatible con Vulkan.</li></ul>
+<p>Cómo se usa:</p>
+<ol><li>Añade tus clips, elige <span class="ui">Hacerlo tanto más grande</span> y pulsa <span class="ui">Escalar</span>.</li><li>Para IA: instala Video2X tú mismo (en Linux un AppImage, el paquete AUR o tu propia compilación; en Windows la versión oficial). Spektronautilus lo encuentra solo. Si no, escribe la ruta completa del programa en una línea de un archivo de texto llamado <code>video2x.txt</code> en la carpeta de ajustes (<code>~/.config/spektronautilus</code> en Linux, <code>%APPDATA%\spektronautilus</code> en Windows), o define la variable <code>SPEKTRO_VIDEO2X</code>, y vuelve a iniciar Spektronautilus. La nota sobre los ajustes dice si se encontró Video2X. Luego elige <span class="ui">Tipo de imagen</span>.</li></ol>
+<p>Conviene saber:</p>
+<ul><li>La IA es lenta. Un clip corto puede tardar muchos minutos, así que usa la <a href="../../../es/guides/queue/">Cola</a> y déjalo trabajar.</li><li>Con IA, las fotos y el cine real siempre se amplían 4×. El resultado no puede superar 8K.</li><li>¿Tienes más de una tarjeta gráfica? Pulsa <span class="ui">Comprobar mi tarjeta gráfica</span> y define <span class="ui">Número de la tarjeta gráfica</span>.</li></ul>
+<h2 id="slowmo">Cámara lenta</h2>
+<p>Hace los clips más lentos o más suaves. Elige un <span class="ui">Método</span>:</p>
+<ul><li><strong>Mezcla suave</strong> es el predeterminado. Mezcla fotogramas vecinos. Es rápido y funciona en todas partes, incluso en el navegador.</li><li><strong>Movimiento suave</strong> calcula el movimiento entre los fotogramas. Tarda más, pero se ve más limpio cuando las cosas se mueven rápido.</li><li><strong>IA</strong> (RIFE, ejecutada por Video2X) inventa los fotogramas entre los tuyos y se ve mejor. Necesita lo mismo que la IA de <a href="../../../es/guides/tools/#ai">Ampliar</a>: la versión local, una tarjeta gráfica compatible con Vulkan y Video2X.</li></ul>
+<p>Cómo se usa:</p>
+<ol><li>Añade tus clips y elige <span class="ui">Cuánto más lento</span>: 2×, 4× u 8×.</li><li>En <span class="ui">Resultado</span> elige un clip más lento, o la misma velocidad pero más suave, con más fotogramas por segundo. Pulsa <span class="ui">Crear cámara lenta</span>.</li></ol>
+<p>Conviene saber:</p>
+<ul><li>Un clip en cámara lenta se hace más largo (2× más lento es el doble de largo) y pierde el sonido. Los loops siguen siendo loops.</li><li>«Más suave» mantiene la duración, pero no puede pasar de 60 fotogramas por segundo (120 con IA).</li><li>El movimiento suave y la IA son lentos, así que usa la <a href="../../../es/guides/queue/">Cola</a> y déjalo trabajar.</li></ul>
+<h2 id="catalog">Catalogue</h2>
+<p>Crea una página web y un archivo de hoja de cálculo con una imagen, la duración, el tamaño y la calidad de enlace de cada loop. Útil para colecciones grandes. <a href="../../../tools/app/#catalog">Abrir esta herramienta</a>.</p>
+<h2 id="pack">Loop pack</h2>
+<p>Reúne loops en un zip que puedes compartir, con imagen de vista previa, un archivo de información y una licencia. <a href="../../../tools/app/#pack">Abrir esta herramienta</a>.</p>
+<h2 id="hospital">Loop Hospital</h2>
+<p>El Loop Hospital cuida un clip cada vez, para que quede listo para los mezcladores. Trae un clip y se examina: tamaño, tasa de fotogramas, duración y si hace loop sin salto. El examen sugiere tratamientos, por ejemplo ampliar una imagen pequeña o arreglar el loop cuando se ve un salto.</p>
+<p>¿Tienes un GIF? Elígelo y pulsa <span class="ui">Convertir GIF a MP4</span>, justo encima de la ventana de vídeo. Primero se convierte en un mp4 normal, que puedes descargar, y después puedes arreglarlo con los tratamientos de abajo.</p>
+<p>Cómo se usa:</p>
+<ol><li>Pulsa <span class="ui">elige un clip</span> o suelta un clip.</li><li>Pulsa <span class="ui">Añadir todos los tratamientos sugeridos</span> o toca los mosaicos que quieras: cortar, girar, recortar forma, cámara lenta, ampliar, cambiar tamaño, look y hacer loop. Cada mosaico abre sus ajustes debajo. Se aplican en ese orden.</li><li>Pulsa <span class="ui">Previsualizar el tratamiento</span> para ver el antes y el después lado a lado, y luego <span class="ui">Tratar y guardar</span>.</li><li>Pulsa <span class="ui">Tratar más clips de la misma manera</span> para dar el mismo tratamiento a otros clips.</li></ol>
+<p>¿Quieres el mismo clip en varios estilos? Toca el mosaico Look y elige todos los looks que quieras, por ejemplo The Matrix, Dark Future y Purple Dream. Obtienes un archivo por cada look. Marca <span class="ui">Guardar también el clip sin look</span> para tener también el clip sin look.</p>
+<p>Los loops quietos o cortos cobran vida con la ficha <span class="ui">Dale vida</span>. Elige un estilo (respiración calmada, flotante, onírico o pulso) y el clip recibe entrada y salida suaves, un zoom que respira y, si quieres, una cámara flotante, inclinación y luz que respira. Se repite hasta al menos 16 segundos (tú eliges) y cada movimiento encaja exactamente en la repetición, así que sigue haciendo loop sin saltos. Ajusta cada parte en Avanzado.</p>
+<p>¿Quieres un movimiento largo y fluido? La ficha <span class="ui">Ken Burns</span> añade un zoom o una panorámica lenta sobre todo el clip, como una cámara que se mueve con mucha suavidad. Elige el movimiento y hasta dónde llega, y hazlo de al menos 24 s para que se deslice. Vuelve al punto de partida, así que el clip sigue en bucle. Se puede combinar con <span class="ui">Dale vida</span>.</p>
+<p>Para loops sedosos a 60 fps, usa la ficha <span class="ui">Fotogramas por segundo</span>. Crea fotogramas nuevos entre los antiguos, así que un loop de 24 o 30 fps pasa a 60 fps sin tirones. Un clip en bucle mantiene su unión y su duración exacta, y los clips con fotogramas repetidos (animación a doses, o 12 fps en un archivo de 30 fps) se corrigen primero. Soft blend funciona en todas partes, también en el móvil. Smooth motion es más limpio en acción rápida pero lento, así que mantén los clips cortos en el móvil. La IA usa RIFE y da el mejor resultado en la versión de Linux.</p>
+<p>Antes de empezar un trabajo largo, el Hospital primero estima el tiempo: ejecuta toda tu receta en dos trozos cortos del clip. Tarda unos segundos y da una estimación de tiempo que se ajusta a tu ordenador y a tus ajustes, también cuando los pasos pesados van al final. Al terminar, muestra cuánto tardó de verdad junto a la estimación.</p>
+<p>En el móvil puedes cambiar a otra app mientras trabaja: el trabajo espera y sigue cuando vuelves. Si al teléfono le falta memoria, puede cerrar la página, así que en trabajos largos lo más seguro es dejar el Hospital abierto.</p>
+<p>¿Algo se ha atascado, o quieres empezar de cero? <strong>↺ Empezar de nuevo</strong> (arriba a la derecha, y junto a Parar) borra el clip, tus ajustes y los resultados, y detiene todo lo que esté en marcha. Si hay algo que perder, pregunta primero. Después carga la página de nuevo.</p>
+<p>El movimiento a tirones, por ejemplo en clips hechos uniendo loops que no encajan del todo, se corrige con la ficha <span class="ui">Suavizar</span>. Busca los momentos en que la imagen da sacudidas o se arrastra, uniformiza la velocidad y quita los fotogramas sueltos que saltan de su sitio. El clip puede quedar un poco más corto o más largo. Usa <span class="ui">Cortar</span> antes si solo quieres conservar un loop.</p>
+<p>Otras formas de dar movimiento orgánico a loops quietos: <strong>ida y vuelta</strong> (hacia delante y luego hacia atrás) con la ficha Make it loop, <strong>cámara lenta</strong> para calmarlo todo, <strong>estelas suaves</strong> para un resplandor onírico y un <strong>look</strong> que cambie de color lentamente. Combínalos.</p>
+<p>Todo funciona en tu navegador. En la versión local en <a href="../../../es/guides/offline-linux/#linux">Linux</a> con Video2X instalado, los bloques de cámara lenta y ampliar también ofrecen un método de <strong>IA</strong> (RIFE y Real-ESRGAN). Los pasos de IA van primero y pueden tardar; el resto del tratamiento sigue después. La vista previa siempre usa los métodos rápidos. <strong>Probar la IA con 2 segundos</strong> muestra la calidad real de la IA y cuánto tardará el clip entero. La tarjeta gráfica se elige automáticamente y se evita el lentísimo controlador por software (llvmpipe). Más sobre los métodos de IA: <a href="../../../es/guides/tools/#ai">Ampliar</a> y <a href="../../../es/guides/tools/#slowmo">Cámara lenta</a>. <a href="../../../tools/hospital/">Abrir el Loop Hospital</a>.</p>
+<h2 id="upload">Subir a Vimeo</h2>
+<p>Cada vídeo terminado se puede enviar directamente desde tu navegador a tu propia cuenta de Vimeo. Pulsa <span class="ui">Subir…</span> junto a un resultado en las herramientas y en el Loop Hospital, <span class="ui">Subir a Vimeo</span> en un vídeo terminado del Magic Mixer, o <span class="ui">Subir la grabación</span> en el Video DJ. Tu archivo va solo a Vimeo, nunca a través de Spektronautilus.</p>
+<p>Cómo configurarlo:</p>
+<ol><li>Solo una vez: crea una app en developer.vimeo.com y genera un token de acceso con los permisos upload, edit y private.</li><li>Pega el token. Se guarda solo en tu navegador.</li><li>Elige el título y quién puede verlo, y pulsa <span class="ui">Subir</span>.</li></ol>
+<p>Conviene saber:</p>
+<ul><li>Tú eliges quién puede verlo: solo tú, solo quien tenga el enlace, o todo el mundo.</li><li>El vídeo se envía en partes, y la subida se reintenta sola si la red se corta un momento.</li><li>Vimeo necesita unos minutos para procesar el vídeo tras la subida. Las cuentas gratuitas de Vimeo tienen límites de lo que puedes subir cada semana.</li></ul>
+<h2 id="know">Conviene saber</h2>
+<ul><li>Los loops normalmente no llevan sonido. <span class="ui">Conservar el sonido</span> está desactivado por defecto.</li><li>Los loops cortos dan un desplazamiento y un bucle fluidos en el software de VJ.</li><li>Si algo falla, la tarea muestra el motivo. Mira <a href="../../../es/guides/help/">Ayuda y solución de problemas</a>.</li></ul></div><div class="note gfb"><strong>¿Falta algo o no se entiende?</strong> Cuéntamelo y mejoraré la guía. <button class="btn" type="button" data-spk-feedback>💬 Comentarios</button></div><div class="pager"><a class="pg prev" href="../../../es/guides/video-dj/"><small>← Anterior</small>Video DJ</a><a class="pg next" href="../../../es/guides/queue/"><small>Siguiente →</small>Cola</a></div></article></div>
+</div></main>
+<footer><div class="wrap fcols"><div><div class="dgt">Mezcladores</div><a href="../../../es/vj-mixer/">Mezclador VJ</a><a href="../../../es/magic-mixer/">Mezclador mágico</a><a href="../../../es/live-mixer/">Video DJ</a></div><div><div class="dgt">Spektronautilus</div><a href="../../../es/">Inicio</a><a href="../../../es/tools/">Herramientas</a><a href="../../../es/packs/">Packs de loops</a><a href="../../../es/guides/" aria-current=page>Guías</a></div><div><div class="dgt">Más</div><a href="../../../es/about/">Acerca de</a><a href="../../../queue/">Cola<span class="qn" hidden></span></a></div></div><div class="wrap fbase"><span>Herramientas gratuitas para VJs, artistas visuales y amantes de la música. Tus archivos se quedan en tu dispositivo.</span><span data-spk-feedback-slot></span><span>© Spektronautilus · MIT</span></div></footer>
+</body></html>

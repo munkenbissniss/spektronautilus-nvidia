@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Loop-verktøy: konverter, fiks, filtrer og organiser loopene dine | Spektronautilus</title>
+<meta name="description" content="Gratis nettleserverktøy for VJ-loops: konverter GIF-er og video, lag sømløse loops, beskjær, endre størrelse, legg på looks, finn gratis loops og lag pakker.">
+
+<link rel="canonical" href="https://munkenbissniss.github.io/spektronautilus/no/guides/tools/">
+<link rel="alternate" hreflang="en" href="https://munkenbissniss.github.io/spektronautilus/guides/tools/"><link rel="alternate" hreflang="de" href="https://munkenbissniss.github.io/spektronautilus/de/guides/tools/"><link rel="alternate" hreflang="es" href="https://munkenbissniss.github.io/spektronautilus/es/guides/tools/"><link rel="alternate" hreflang="no" href="https://munkenbissniss.github.io/spektronautilus/no/guides/tools/"><link rel="alternate" hreflang="pt" href="https://munkenbissniss.github.io/spektronautilus/pt/guides/tools/"><link rel="alternate" hreflang="x-default" href="https://munkenbissniss.github.io/spektronautilus/guides/tools/">
+<meta property="og:site_name" content="Spektronautilus"><meta property="og:type" content="website"><meta property="og:title" content="Loop-verktøy: konverter, fiks, filtrer og organiser loopene dine | Spektronautilus"><meta property="og:description" content="Gratis nettleserverktøy for VJ-loops: konverter GIF-er og video, lag sømløse loops, beskjær, endre størrelse, legg på looks, finn gratis loops og lag pakker."><meta property="og:url" content="https://munkenbissniss.github.io/spektronautilus/no/guides/tools/"><meta property="og:locale" content="nb_NO">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#14182b">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Spektro"><meta name="apple-mobile-web-app-status-bar-style" content="default">
+<style>:root{--bt:#c4155a;--okt:#0b7358;--bg:#f3f4f8;--ink:#14182b;--mute:#5a607a;--line:#d5d8e6;--panel:#fff;--a:#2b3af0;--b:#ff3d81;--ok:#12906f;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bt:#ff6fa3;--okt:#3fd6a4;--bg:#10122a;--ink:#eceefb;--mute:#a0a6c8;--line:#2a2e57;--panel:#171a3a;--a:#7f8bff;--b:#ff6fa3;--ok:#3fd6a4;color-scheme:dark}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--a)}a:focus-visible,summary:focus-visible,button:focus-visible{outline:3px solid var(--b);outline-offset:2px;border-radius:6px}
+.wrap{max-width:1060px;margin:0 auto;padding:0 20px}
+header.top{border-bottom:1px solid var(--line);background:var(--bg);position:sticky;top:0;z-index:5}
+header.top .wrap{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding-top:10px;padding-bottom:10px}
+.brand{display:flex;align-items:center;gap:8px;font-weight:800;letter-spacing:-.02em;text-decoration:none;color:var(--ink);font-size:1.1rem}
+.brand svg{width:36px;height:36px}
+nav.main{display:flex;gap:2px 14px;flex-wrap:wrap;flex:1}
+nav.main a{color:var(--ink);text-decoration:none;padding:4px 2px;border-bottom:2px solid transparent;font-size:.95rem}
+nav.main a:hover,nav.main a[aria-current]{border-color:var(--b)}
+.ld .ddm a{color:var(--ink);text-decoration:none}
+.ld{position:relative;margin-left:auto;font-size:.85rem}.ld .ddb{border:1px solid var(--line);border-radius:999px;padding:3px 11px;color:var(--mute)}.ld .ddm{left:auto;right:0;min-width:140px}
+main{padding:28px 0 40px}
+h1{font-size:2.2rem;letter-spacing:-.03em;line-height:1.15;margin:6px 0 8px}h2{font-size:1.25rem;margin:26px 0 8px}h3{font-size:1.05rem;margin:0 0 4px}
+.lead{font-size:1.15rem;color:var(--mute);max-width:46em;margin:0 0 20px}
+.hero{padding:26px 0 8px}.hero h1{font-size:clamp(2.2rem,6vw,3.6rem)}
+.hero .tag{font-weight:700;color:var(--bt);letter-spacing:.04em;text-transform:uppercase;font-size:.85rem}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+.btn{font:inherit;display:inline-block;cursor:pointer;border:2px solid var(--ink);background:transparent;color:var(--ink);padding:7px 18px;border-radius:999px;font-weight:700;text-decoration:none}
+.btn.main{background:var(--ink);color:var(--bg)}.btn:hover{border-color:var(--b)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin:12px 0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;color:inherit;text-decoration:none;display:block}
+a.card:hover{border-color:var(--b)}.card p{margin:0;color:var(--mute);font-size:.93rem}
+.badge{display:inline-block;font-size:.72rem;font-weight:700;border:1px solid currentColor;border-radius:999px;padding:0 8px;margin-left:6px;vertical-align:middle;color:var(--mute)}
+.badge.live{color:var(--okt)}
+ul.spec{padding-left:1.2em}ul.spec li{margin:3px 0}
+details{border-top:1px solid var(--line);padding:8px 0}summary{cursor:pointer;font-weight:700}
+.note{border-left:4px solid var(--b);background:var(--panel);padding:10px 14px;border-radius:0 10px 10px 0;color:var(--mute);margin:16px 0}
+.pack{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.post time{color:var(--mute);font-size:.85rem}.post .body p{max-width:46em}
+footer{border-top:1px solid var(--line);color:var(--mute);font-size:.88rem;padding:18px 0 30px}
+footer .wrap{display:flex;gap:10px 24px;flex-wrap:wrap;justify-content:space-between}
+@media(max-width:760px){header.top .wrap{gap:6px 12px}nav.main{flex-basis:100%;order:3;gap:0 14px}h1{font-size:1.8rem}}
+
+.qn{display:inline-block;margin-left:6px;min-width:1.3em;padding:0 6px;border-radius:999px;background:var(--b,#ff3d81);color:#fff;font-size:.75em;font-weight:800;text-align:center}.qn[hidden]{display:none}
+
+/* guides */
+.docs{display:grid;grid-template-columns:230px minmax(0,1fr);gap:34px;align-items:start}
+.dnav{position:sticky;top:76px;max-height:calc(100vh - 96px);overflow:auto;font-size:.93rem}
+.dnav summary{font-weight:800;list-style:none;cursor:pointer;padding:6px 0}.dnav summary::-webkit-details-marker{display:none}
+.dnav details{border:0;padding:0}
+.dg{margin:8px 0 14px}.dgt{font-size:.74rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--mute);margin:0 0 4px}
+.dnav a{display:flex;gap:8px;align-items:center;padding:6px 10px;margin:1px 0;border-radius:9px;color:var(--ink);text-decoration:none;border-left:3px solid transparent}
+.dnav a:hover{background:var(--panel)}.dnav a[aria-current]{background:var(--panel);border-left-color:var(--b);font-weight:700}
+.doc{min-width:0;max-width:47em}.doc h1{font-size:2rem;display:flex;gap:12px;align-items:center}
+.gi{font-size:1.5em;line-height:1}.doc h1 .gi{font-size:1.1em}
+.crumb{font-size:.88rem;color:var(--mute);margin:0 0 4px}.crumb a{color:var(--mute)}
+.doc .body h2{margin:34px 0 8px;padding-top:6px;border-top:1px solid var(--line);scroll-margin-top:80px}.doc .body h3{margin:20px 0 4px;scroll-margin-top:80px}
+.doc .body p,.doc .body li{max-width:44em}.doc .body li{margin:4px 0}.doc .body ul,.doc .body ol{padding-left:1.35em}
+.doc .body code{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:0 5px;font-size:.92em}
+.tip{border-left:4px solid var(--ok);background:var(--panel);padding:10px 14px;border-radius:0 10px 10px 0;margin:14px 0}
+.toc{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin:12px 0 4px;display:flex;flex-wrap:wrap;gap:4px 18px}
+.toc .dgt{flex-basis:100%}.toc a{color:var(--ink);text-decoration:none;font-size:.93rem;border-bottom:1px dashed var(--line)}.toc a:hover{border-color:var(--b)}
+.gcard{position:relative;transition:transform .12s,border-color .12s}.gcard:hover{transform:translateY(-2px)}.gcard .gi{font-size:1.8rem;margin-bottom:6px}
+.gcard .more{display:inline-block;margin-top:10px;font-weight:700;font-size:.88rem;color:var(--a)}
+.tasks{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin:10px 0 6px}
+.task{display:flex;gap:12px;align-items:center;padding:12px 14px;background:var(--panel);border:1px solid var(--line);border-radius:12px;color:var(--ink);text-decoration:none;font-weight:600}
+.task span{font-size:1.4rem}.task:hover{border-color:var(--b)}
+.gfb{margin:34px 0 8px;display:flex;gap:6px 12px;align-items:center;flex-wrap:wrap}.gfb .btn{padding:3px 14px;font-size:.9rem}
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0 6px}
+.pg{display:block;padding:12px 16px;border:1px solid var(--line);border-radius:12px;background:var(--panel);color:var(--ink);text-decoration:none;font-weight:700}.pg small{display:block;color:var(--mute);font-weight:500}
+.pg.next{text-align:right;grid-column:2}.pg:hover{border-color:var(--b)}
+footer .spkx{opacity:.85}
+@media(max-width:899px){.docs{grid-template-columns:1fr;gap:10px}.dnav{position:static;max-height:none;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:2px 14px}.dnav summary::after{content:" ▾"}.doc h1{font-size:1.6rem}}
+@media(min-width:900px){.dnav summary{pointer-events:none}}
+.ui{font-weight:600;background:var(--panel);border:1px solid var(--line);border-radius:7px;padding:0 6px;overflow-wrap:anywhere}
+kbd{font:inherit;font-size:.88em;font-weight:700;background:var(--panel);border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:0 6px}
+
+/* menu dropdown, footer columns, dock */
+.dd{position:relative}
+.ddb{font:inherit;font-size:.95rem;color:var(--ink);background:none;border:0;border-bottom:2px solid transparent;padding:4px 2px;cursor:pointer}
+.ddb:hover,.ddb[aria-expanded=true],.ddb[data-current]{border-color:var(--b)}
+.ddm{position:absolute;left:-10px;top:100%;min-width:190px;margin-top:6px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:6px;box-shadow:0 10px 30px rgba(0,0,0,.18);z-index:20}
+.ddm[hidden]{display:none}.ddm a{display:block;padding:8px 12px;border-radius:8px;border-bottom:0!important}.ddm a:hover,.ddm a[aria-current]{background:var(--bg)}
+nav.main .ddm a{color:var(--ink)}
+footer .fcols{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:18px 30px;padding-bottom:16px;margin-bottom:14px;border-bottom:1px solid var(--line)}
+footer .fcols a{display:block;color:var(--ink);text-decoration:none;padding:2px 0}footer .fcols a:hover{text-decoration:underline}
+footer .fbase{align-items:center}
+.spkdock{position:fixed;right:10px;bottom:10px;z-index:9985;display:flex;gap:8px;align-items:center}
+.spkdock button{font:inherit;font-size:.82rem;cursor:pointer;color:#e8eaff;background:rgba(20,24,43,.88);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:5px 12px;opacity:.8}
+.spkdock button:hover,.spkdock button:focus-visible{opacity:1}.spkdock .up{width:34px;height:34px;padding:0;font-size:1rem;display:none}.spkdock .up.on{display:block}
+.spkdock .qn{background:#ff6fa3;color:#14182b;margin-left:6px}
+
+/* front page */
+.hero .lead{max-width:40em}.mute{color:var(--mute)}
+.goals{grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px}
+.goal{display:flex;flex-direction:column;gap:2px;transition:transform .12s,border-color .12s}.goal:hover{transform:translateY(-2px)}
+.goal .gi{font-size:2rem;line-height:1;margin-bottom:6px}.goal p{flex:1}.goal .more{margin-top:12px;font-weight:700;font-size:.9rem;color:var(--a)}
+ol.flow{list-style:none;margin:12px 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;counter-reset:s}
+ol.flow li{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 16px 14px 16px}
+ol.flow .n{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--ink);color:var(--bg);font-weight:800;font-size:.9rem;margin-bottom:6px}
+ol.flow p{margin:0 0 8px;color:var(--mute);font-size:.93rem}ol.flow a{font-weight:700;font-size:.9rem}
+@media(min-width:900px){ol.flow li:not(:last-child)::after{content:"→";position:absolute;right:-13px;top:50%;transform:translateY(-50%);color:var(--b);font-weight:800;z-index:1;background:var(--bg);border-radius:50%;width:22px;height:22px;display:grid;place-items:center;font-size:.9rem}}
+.kits{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.kit{display:inline-flex;gap:8px;align-items:center;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:var(--panel);color:var(--ink);text-decoration:none;font-weight:600;font-size:.93rem}.kit:hover{border-color:var(--b)}
+ul.who{list-style:none;display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:10px 0}ul.who li{padding:5px 14px;border-radius:999px;background:var(--ink);color:var(--bg);font-weight:600;font-size:.9rem}
+.trust{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:30px 0 8px;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.trust .gi{font-size:1.5rem}.trust p{margin:0;color:var(--mute);font-size:.93rem}
+.split{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin:24px 0}.split .card p{margin:6px 0}
+.easy{font-size:.93rem;margin-top:8px}
+</style>
+<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "WebSite", "name": "Spektronautilus", "url": "https://munkenbissniss.github.io/spektronautilus/", "inLanguage": "no"}, {"@context": "https://schema.org", "@type": "TechArticle", "headline": "Loop-verktøy: konverter, fiks, filtrer og organiser loopene dine", "description": "Gratis nettleserverktøy for VJ-loops: konverter GIF-er og video, lag sømløse loops, beskjær, endre størrelse, legg på looks, finn gratis loops og lag pakker.", "inLanguage": "no", "url": "https://munkenbissniss.github.io/spektronautilus/no/guides/tools/", "publisher": {"@type": "Organization", "name": "Spektronautilus"}}]</script>
+<script>(function(){try{var q=location.search.indexOf('desktop=1')>-1;if(q)localStorage.setItem('spk_desktop','1');
+var m=!localStorage.getItem('spk_desktop')&&matchMedia('(pointer:coarse) and (max-width:900px)').matches;if(!m)return;
+var map=[[/(^|\/)mixer\/$/,'$1mixer-mobile/'],[/(^|\/)live-dj\/$/,'$1live-mobile/'],[/(^|\/)vj-pad\/$/,'$1vj-mobile/']];
+document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('a[data-app]').forEach(function(a){map.forEach(function(r){a.href=a.href.replace(r[0],r[1])})})})}catch(e){}})();</script>
+<script>document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('.dd,.ld').forEach(function(d){var b=d.querySelector('.ddb'),m=d.querySelector('.ddm');function set(o){m.hidden=!o;b.setAttribute('aria-expanded',o?'true':'false')}b.addEventListener('click',function(e){e.stopPropagation();var o=m.hidden;document.querySelectorAll('.ddm').forEach(function(x){x.hidden=true});set(o)});document.addEventListener('click',function(e){if(!d.contains(e.target))set(false)});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden){set(false);b.focus()}});d.addEventListener('focusout',function(e){if(!d.contains(e.relatedTarget))set(false)})})});</script>
+<script>document.addEventListener('DOMContentLoaded',function(){function u(){try{var o=JSON.parse(localStorage.getItem('spk_q')||'{}'),n=Date.now()-(o.t||0)<30000?o.n||0:0;document.querySelectorAll('.qn').forEach(function(b){b.hidden=!n;b.textContent=n})}catch(e){}}u();addEventListener('storage',u);setInterval(u,4000)});try{localStorage.setItem('spk_lang','no')}catch(e){}</script>
+<script src="../../../shared/sw-register.js" defer></script>
+<script src="../../../shared/extras.js" data-dock="1" defer></script>
+</head>
+<body>
+<a href="#main" class="sr" style="position:absolute;left:-999px">Hopp til innhold</a>
+<header class="top"><div class="wrap">
+<a class="brand" href="../../../no/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><circle cx="34.92" cy="34.95" r="1.52" fill="#7a3cff"/><circle cx="37.08" cy="33.92" r="1.61" fill="#7a3cff"/><circle cx="39.66" cy="34.37" r="1.71" fill="#2b3af0"/><circle cx="41.69" cy="36.43" r="1.82" fill="#2b3af0"/><circle cx="42.18" cy="39.55" r="1.94" fill="#2b3af0"/><circle cx="40.63" cy="42.65" r="2.07" fill="#2b3af0"/><circle cx="37.27" cy="44.44" r="2.22" fill="#19c3e6"/><circle cx="33.12" cy="43.89" r="2.38" fill="#19c3e6"/><circle cx="29.77" cy="40.76" r="2.56" fill="#19c3e6"/><circle cx="28.78" cy="35.82" r="2.75" fill="#2fd39a"/><circle cx="31.04" cy="30.78" r="2.96" fill="#2fd39a"/><circle cx="36.27" cy="27.72" r="3.2" fill="#2fd39a"/><circle cx="42.9" cy="28.32" r="3.45" fill="#2fd39a"/><circle cx="48.43" cy="33.08" r="3.73" fill="#ffd23f"/><circle cx="50.34" cy="40.86" r="4.04" fill="#ffd23f"/><circle cx="47.08" cy="49.03" r="4.38" fill="#ffd23f"/><circle cx="38.96" cy="54.25" r="4.75" fill="#ff8a3d"/><circle cx="28.38" cy="53.73" r="5.16" fill="#ff8a3d"/><circle cx="19.26" cy="46.53" r="5.6" fill="#ff8a3d"/><circle cx="15.71" cy="34.27" r="6.09" fill="#ff8a3d"/><circle cx="20.35" cy="21.06" r="6.63" fill="#ff3d81"/><circle cx="32.92" cy="12.22" r="7.22" fill="#ff3d81"/></svg><span>Spektronautilus</span></a>
+<nav class="main" aria-label="Main"><a href="../../../no/">Hjem</a><div class="dd"><button type="button" class="ddb" aria-expanded="false" aria-haspopup="true">Mikserne <span aria-hidden="true">▾</span></button><div class="ddm" hidden><a href="../../../no/vj-mixer/">VJ-mikser</a><a href="../../../no/magic-mixer/">Magisk mikser</a><a href="../../../no/live-mixer/">Video DJ</a></div></div><a href="../../../no/tools/">Verktøy</a><a href="../../../no/packs/">Loop-pakker</a><a href="../../../no/guides/" aria-current=page>Guider</a></nav>
+<div class="ld" role="navigation" aria-label="Språk"><button type="button" class="ddb" aria-expanded="false" aria-haspopup="true" aria-label="Språk">🌐 NO <span aria-hidden="true">▾</span></button><div class="ddm" hidden><a href="../../../guides/tools/" hreflang="en" lang="en">English</a><a href="../../../de/guides/tools/" hreflang="de" lang="de">Deutsch</a><a href="../../../es/guides/tools/" hreflang="es" lang="es">Español</a><a href="../../../no/guides/tools/" hreflang="no" lang="no" aria-current=true>Norsk</a><a href="../../../pt/guides/tools/" hreflang="pt" lang="pt">Português</a></div></div>
+</div></header>
+<main id="main"><div class="wrap">
+<div class="docs"><nav class="dnav" aria-label="Alle guider"><details><summary>Alle guider</summary><div class="dg"><div class="dgt">Start her</div><a href="../../../no/guides/start/"><span>🧭</span> Start her</a></div><div class="dg"><div class="dgt">Mikserne</div><a href="../../../no/guides/vj-mixer/"><span>🎚️</span> VJ-mikser</a><a href="../../../no/guides/magic-mixer/"><span>🪄</span> Magisk videomikser</a><a href="../../../no/guides/video-dj/"><span>🎛️</span> Video DJ</a></div><div class="dg"><div class="dgt">Loop-verktøy</div><a href="../../../no/guides/tools/" aria-current=page><span>🧰</span> Loop-verktøy</a></div><div class="dg"><div class="dgt">Greit å vite</div><a href="../../../no/guides/queue/"><span>📋</span> Kø</a><a href="../../../no/guides/show-check/"><span>✅</span> Klar for showet?</a><a href="../../../no/guides/offline-linux/"><span>📲</span> Uten internett og Linux</a><a href="../../../no/guides/help/"><span>🛟</span> Hjelp og feilsøking</a></div></details></nav><script>(function(){var d=document.querySelector('.dnav details');if(d&&matchMedia('(min-width:900px)').matches)d.open=true})()</script><article class="doc"><p class="crumb"><a href="../../../no/guides/">Guider</a> › Loop-verktøy</p><h1><span class="gi">🧰</span> Loop-verktøy: konverter, fiks, filtrer og organiser loopene dine</h1><p class="lead">Gratis nettleserverktøy for VJ-loops: konverter GIF-er og video, lag sømløse loops, beskjær, endre størrelse, legg på looks, finn gratis loops og lag pakker.</p><div class="cta"><a class="btn main" href="../../../tools/app/">Åpne verktøyet</a></div><nav class="toc" aria-label="På denne siden"><div class="dgt">På denne siden</div><a href="#how">Slik fungerer verktøyene</a><a href="#gif2mp4">GIF to MP4</a><a href="#loop">Make loops</a><a href="#convert">Convert</a><a href="#search">Find loops</a><a href="#filters">Filters</a><a href="#crop">Crop &amp; trim</a><a href="#sizes">Sizes</a><a href="#pro">HAP / ProRes</a><a href="#ai">Oppskalering</a><a href="#slowmo">Slowmotion</a><a href="#catalog">Catalogue</a><a href="#pack">Loop pack</a><a href="#hospital">Loop Hospital</a><a href="#upload">Last opp til Vimeo</a><a href="#know">Greit å vite</a></nav><div class="body"><h2 id="how">Slik fungerer verktøyene</h2>
+<p>Åpne verktøyene og velg ett fra listen. Alle følger samme mønster:</p>
+<ol><li><strong>Legg til filer.</strong> Slipp filer eller en mappe, eller trykk <span class="ui">velg filer</span>.</li><li><strong>Innstillinger.</strong> Noen få enkle valg. De tekniske innstillingene ligger under <span class="ui">Avansert</span>.</li><li><strong>Start.</strong> Arbeidet blir til jobber i en jobbliste. Du kan legge mange filer i kø og la det gå. Se <a href="../../../no/guides/queue/">Kø</a>.</li><li><strong>Last ned.</strong> Resultatene er vanlige mp4-filer du kan bruke i all VJ-programvare.</li></ol>
+<p>Alt kjører inne i nettleseren din, og filene dine forlater aldri datamaskinen. Store filer går fint, de leses rett fra disken. I Chrome eller Edge kan du også velge en mappe og lagre hvert resultat rett i den (<span class="ui">Lagre hver fil rett i en mappe jeg velger</span>).</p>
+<p class="tip">Nettleserversjonen er tregere enn et vanlig program (omtrent 5 til 10 ganger). For mange store 4K-filer bruker du <a href="../../../no/guides/offline-linux/#linux">Linux-versjonen</a>, som bruker den raske motoren på din egen datamaskin.</p>
+<h2 id="gif2mp4">GIF to MP4</h2>
+<p>Konverterer mange GIF-er til jevn mp4 på en gang, også GIF-er med gjennomsiktighet. For gjennomsiktige GIF-er velger du bakgrunnsfarge (svart, hvit eller #rrggbb). <span class="ui">Behold formen, bare krymp</span> holder små GIF-er små. <a href="../../../tools/app/#gif2mp4">Åpne dette verktøyet</a>.</p>
+<h2 id="loop">Make loops</h2>
+<p>Sjekker om et klipp allerede går rundt som en loop. Hvis det gjør det, blir det latt i fred. Hvis ikke kan det trimme klippet til det beste loop-punktet, spille det forover og så bakover, eller krysse enden over i starten. <span class="ui">Auto: behold gode loops, fiks resten</span> velger for deg: behold gode loops, fiks de andre. Du kan også sette en minstelengde, fordi Magisk videomikser liker loops på 16 sekunder eller mer. <a href="../../../tools/app/#loop">Åpne dette verktøyet</a>.</p>
+<h2 id="convert">Convert</h2>
+<p>Gjør mov, webm, mkv, gif og andre formater om til VJ-vennlig mp4. Velg størrelse, bildefrekvens og kvalitet, og bruk <span class="ui">Navnemal</span> for å gi nytt navn i bulk. Malen kjenner koder som <code>{name}</code>, <code>{n}</code>, <code>{n2}</code> (et tall med to sifre), <code>{w}</code>, <code>{h}</code>, <code>{res}</code>, <code>{fps}</code>, <code>{dur}</code> og <code>{date}</code>. Du kan også fjerne mellomrom, bruke små bokstaver og bytte ut æøå. <a href="../../../tools/app/#convert">Åpne dette verktøyet</a>.</p>
+<h2 id="search">Find loops</h2>
+<p>Søk i gratis kilder etter loops, og last ned og konverter dem i ett steg. Internet Archive, Wikimedia Commons, NASA og Prelinger Archives virker uten konto. Pexels og Pixabay har mange ferdige loops, men trenger en gratis nøkkel, som tar et minutt å lage. Nøkkelen lagres bare i nettleseren din og sendes bare til den siden.</p>
+<ul><li>Som standard viser søket bare korte klipp (under 60 sekunder), skjuler statlige og militære opptak (US Army, NASA og lignende), og setter loops og GIF-animasjoner først. GIF-er looper ofte allerede og gjøres om til mp4 når du laster dem ned. NASA er av som standard: huk av hvis du vil ha romopptak. Hvert filter har en avkrysningsboks, og meldingen under søket forteller hvor mange treff som ble skjult.</li><li>Opphavsperson og lisens for hver nedlasting lagres i en fil som heter <code>credits.csv</code>. Lisensene varierer per klipp, så sjekk dem før du bruker et klipp offentlig.</li><li>Noen sider lar ikke en nettside laste ned filene sine. Bruk da <span class="ui">Åpne siden</span>, last ned klippet selv og slipp det i <span class="ui">Konverter</span>.</li><li>Last bare ned det du har rett til å bruke.</li></ul>
+<p><a href="../../../tools/app/#search">Åpne dette verktøyet</a>.</p>
+<h2 id="filters">Filters</h2>
+<p>Legger VJ-aktige looks på en hel mappe med loops: glød, glitch, speil, kaleidoskop, VHS, duotone, pikselering og spor. Det finnes også åtte fargestiler: Blue Dream, Purple Dream, Dark Future, Sepia, The Matrix, Las Vegas, Coal og Grainy. Sett glidebryteren <span class="ui">Styrke</span> på 50 for referanse-looken; lavere gir en lett berøring, høyere driver fargene lenger. Trykk <span class="ui">Forhåndsvis på første klipp</span> for å se hver look før du bruker dem. Hver fil får ett nytt klipp per look du velger. <a href="../../../tools/app/#filters">Åpne dette verktøyet</a>.</p>
+<h2 id="crop">Crop &amp; trim</h2>
+<p>Beskjærer klipp til bredformat, stående eller kvadrat, og trimmer start og slutt, for en hel mappe på en gang. Velg hvordan det skal passe: beskjær til nøyaktig rammen, eller legg på sorte felt. <a href="../../../tools/app/#crop">Åpne dette verktøyet</a>.</p>
+<h2 id="sizes">Sizes</h2>
+<p>Lager en liten proxy, 720p, 1080p og 4K av hvert klipp på en gang. Størrelser som er større enn originalen hoppes over. <a href="../../../tools/app/#sizes">Åpne dette verktøyet</a>.</p>
+<h2 id="pro">HAP / ProRes</h2>
+<p>Lager profesjonelle formater for Resolume, VDMX, Millumin og videoredigering. Dette krever den lokale <a href="../../../no/guides/offline-linux/#linux">Linux-versjonen</a>, fordi den bruker ffmpeg på din egen datamaskin. <a href="../../../tools/app/#pro">Åpne dette verktøyet</a>.</p>
+<h2 id="ai">Oppskalering</h2>
+<p>Gjør klipp større og skarpere. Velg en <span class="ui">Metode</span>:</p>
+<ul><li><strong>Skarp</strong> er standard. Den forstørrer med en ren størrelsesendring og litt skarpere kanter (still inn med <span class="ui">Skarphet</span>). Den er rask og fungerer overalt, også i nettleseren. I nettleseren kan resultatet være 4K på det meste.</li><li><strong>KI</strong> finner på nye detaljer med det gratis programmet Video2X. Den fungerer bare i den lokale versjonen, på <a href="../../../no/guides/offline-linux/#linux">Linux</a> eller Windows, og krever et grafikkort med Vulkan-støtte.</li></ul>
+<p>Slik gjør du:</p>
+<ol><li>Legg til klippene, velg <span class="ui">Gjør det så mye større</span> og trykk <span class="ui">Skaler opp</span>.</li><li>For KI: installer Video2X selv (på Linux en AppImage, AUR-pakken eller din egen bygging; på Windows den offisielle utgaven). Spektronautilus finner det selv. Hvis ikke, skriv hele stien til programmet på én linje i en tekstfil som heter <code>video2x.txt</code> i innstillingsmappen (<code>~/.config/spektronautilus</code> på Linux, <code>%APPDATA%\spektronautilus</code> på Windows), eller sett variabelen <code>SPEKTRO_VIDEO2X</code>, og start Spektronautilus på nytt. Merknaden over innstillingene sier om Video2X ble funnet. Velg så <span class="ui">Type bilde</span>.</li></ol>
+<p>Greit å vite:</p>
+<ul><li>KI er tregt. Et kort klipp kan ta mange minutter, så bruk <a href="../../../no/guides/queue/">Køen</a> og la det gå.</li><li>Med KI blir bilder og ekte film alltid gjort 4× større. Resultatet kan ikke være større enn 8K.</li><li>Har du flere grafikkort? Trykk <span class="ui">Sjekk grafikkortet mitt</span> og sett <span class="ui">Grafikkortnummer</span>.</li></ul>
+<h2 id="slowmo">Slowmotion</h2>
+<p>Gjør klipp tregere eller jevnere. Velg en <span class="ui">Metode</span>:</p>
+<ul><li><strong>Myk blanding</strong> er standard. Den blander nabobildene. Den er rask og fungerer overalt, også i nettleseren.</li><li><strong>Jevn bevegelse</strong> regner ut bevegelsen mellom bildene. Det tar lengre tid, men ser renere ut når ting beveger seg raskt.</li><li><strong>KI</strong> (RIFE, kjørt av Video2X) finner på bildene mellom bildene dine og ser best ut. Den krever det samme som KI i <a href="../../../no/guides/tools/#ai">Oppskalering</a>: den lokale versjonen, et grafikkort med Vulkan-støtte og Video2X.</li></ul>
+<p>Slik gjør du:</p>
+<ol><li>Legg til klippene og velg <span class="ui">Hvor mye tregere</span>: 2×, 4× eller 8×.</li><li>Under <span class="ui">Resultat</span> velger du et tregere klipp, eller samme fart men jevnere, med flere bilder per sekund. Trykk <span class="ui">Lag slowmotion</span>.</li></ol>
+<p>Greit å vite:</p>
+<ul><li>Et slowmotion-klipp blir lengre (2× tregere er dobbelt så langt) og mister lyden. Loops forblir loops.</li><li>«Jevnere» beholder lengden, men kan ikke gå over 60 bilder per sekund (120 med KI).</li><li>Jevn bevegelse og KI er trege, så bruk <a href="../../../no/guides/queue/">Køen</a> og la det gå.</li></ul>
+<h2 id="catalog">Catalogue</h2>
+<p>Lager en nettside og en regnearkfil med bilde, lengde, størrelse og loop-kvalitet for hver loop. Praktisk for store samlinger. <a href="../../../tools/app/#catalog">Åpne dette verktøyet</a>.</p>
+<h2 id="pack">Loop pack</h2>
+<p>Pakker loops i en zip du kan dele, med forhåndsbilde, en infofil og en lisens. <a href="../../../tools/app/#pack">Åpne dette verktøyet</a>.</p>
+<h2 id="hospital">Loop Hospital</h2>
+<p>Loop Hospital tar seg av ett klipp om gangen, slik at det blir klart for mikserne. Ta med et klipp, så blir det undersøkt: størrelse, bildefrekvens, lengde og om det looper uten hopp. Undersøkelsen foreslår behandlinger, for eksempel oppskalering for et lite bilde, eller en loop-fiks når du ser et hopp.</p>
+<p>Har du en GIF? Velg den og trykk <span class="ui">Konverter GIF til MP4</span>, rett over videovinduet. Den blir først en vanlig mp4 som du kan laste ned, og så kan du fikse den med behandlingene under.</p>
+<p>Slik gjør du:</p>
+<ol><li>Trykk <span class="ui">velg et klipp</span> eller slipp et klipp.</li><li>Trykk <span class="ui">Legg til alle foreslåtte behandlinger</span>, eller trykk på flisene du vil ha: kutt, roter, beskjær, slowmotion, oppskalering, endre størrelse, look og lag loop. Hver flis åpner innstillingene sine under. De gjøres i den rekkefølgen.</li><li>Trykk <span class="ui">Forhåndsvis behandlingen</span> for å se før og etter side om side, og så <span class="ui">Behandle og lagre</span>.</li><li>Trykk <span class="ui">Behandle flere klipp på samme måte</span> for å gi andre klipp samme behandling.</li></ol>
+<p>Vil du ha samme klipp i flere stiler? Trykk på Look-flisen og velg så mange looks du vil, for eksempel The Matrix, Dark Future og Purple Dream. Du får én fil for hver look. Huk av <span class="ui">Lagre også klippet uten look</span> for å få klippet uten look også.</p>
+<p>Stille eller korte looper kan få liv med flisen <span class="ui">Gi den liv</span>. Velg en stil (rolig pust, svevende, drømmende eller puls), så får klippet myk inn- og utbremsing, en rolig pustende zoom og, hvis du vil, et svevende kamera, litt helning og pustende lys. Det gjentas til minst 16 sekunder (du velger), og hver bevegelse passer nøyaktig inn i gjentakelsen, så det fortsatt looper uten hakk. Finjuster hver del under Avansert.</p>
+<p>Vil du ha en lang, glidende bevegelse? Flisen <span class="ui">Ken Burns</span> legger til en langsom zoom eller panorering over hele klippet, som et kamera som beveger seg veldig rolig. Velg bevegelse og hvor langt den går, og gjør klippet minst 24 s så det glir. Den kommer tilbake dit den startet, så klippet looper fortsatt. Den kan kombineres med <span class="ui">Gi den liv</span>.</p>
+<p>For silkemyke 60 fps-looper bruker du flisen <span class="ui">Bildefrekvens</span>. Den lager nye bilder mellom de gamle, så en loop på 24 eller 30 fps blir 60 fps uten hakking. Et klipp som looper beholder skjøten og nøyaktig samme lengde, og klipp med gjentatte bilder (animasjon på to, eller 12 fps i en 30 fps-fil) rettes opp først. Soft blend fungerer overalt, også på mobil. Smooth motion er renere på rask action, men tregt, så hold klippene korte på mobil. AI bruker RIFE og gir best resultat i Linux-versjonen.</p>
+<p>Før en lengre jobb starter, estimerer Hospital først tiden: den kjører hele oppskriften din på to korte biter av klippet. Det tar noen sekunder, og gir et tidsestimat som passer din maskin og dine innstillinger, også når de tunge stegene kommer sist. Når den er ferdig, viser den hvor lang tid det faktisk tok ved siden av estimatet.</p>
+<p>På mobil kan du bytte til en annen app mens den jobber: arbeidet venter og fortsetter når du kommer tilbake. Hvis telefonen har lite minne, kan den lukke siden i stedet, så ved lange jobber er det tryggest å holde Hospital åpen.</p>
+<p>Står noe fast, eller vil du begynne på nytt? <strong>↺ Start på nytt</strong> (øverst til høyre, og ved siden av Stopp) tømmer klippet, innstillingene og resultatene, og stopper alt som kjører. Når det er noe å miste, spør den først. Så lastes siden inn på nytt.</p>
+<p>Rykkete bevegelse, for eksempel i klipp satt sammen av looper som ikke passer helt, rettes opp med flisen <span class="ui">Jevn ut</span>. Den finner stedene der bildet rykker fram eller kryper, jevner ut farten og fjerner enkeltbilder som hopper ut av rekkefølgen. Klippet kan bli litt kortere eller lengre. Bruk <span class="ui">Klipp</span> først hvis du bare vil beholde én loop.</p>
+<p>Andre måter å gjøre stille looper mer organiske: <strong>fram og tilbake</strong> (spill forover, så bakover) med flisen Make it loop, <strong>sakte film</strong> for å roe alt ned, <strong>myke spor</strong> for et drømmende ettersmak, og et <strong>look</strong> som skifter farge sakte. Kombiner dem.</p>
+<p>Alt kjører i nettleseren din. I den lokale versjonen på <a href="../../../no/guides/offline-linux/#linux">Linux</a> med Video2X installert tilbyr Slowmotion- og Oppskalering-flisene også en <strong>AI</strong>-metode (RIFE og Real-ESRGAN). AI-stegene kjører først og kan ta en stund; resten av behandlingen kommer etterpå. Forhåndsvisningen bruker alltid de raske metodene. <strong>Prøv AI på 2 sekunder</strong> viser den ekte AI-kvaliteten og hvor lang tid hele klippet vil ta. Skjermkortet velges automatisk, og den veldig trege programvaredriveren (llvmpipe) unngås. Mer om AI-metodene: <a href="../../../no/guides/tools/#ai">Oppskalering</a> og <a href="../../../no/guides/tools/#slowmo">Slowmotion</a>. <a href="../../../tools/hospital/">Åpne Loop Hospital</a>.</p>
+<h2 id="upload">Last opp til Vimeo</h2>
+<p>Hver ferdige video kan sendes rett fra nettleseren din til din egen Vimeo-konto. Trykk <span class="ui">Last opp …</span> ved siden av et resultat i verktøyene og i Loop Hospital, <span class="ui">Last opp til Vimeo</span> på en ferdig Magic Mixer-video, eller <span class="ui">Last opp opptaket</span> i Video DJ. Filen går bare til Vimeo, aldri gjennom Spektronautilus.</p>
+<p>Slik setter du det opp:</p>
+<ol><li>Bare én gang: lag en app på developer.vimeo.com og generer et tilgangstoken med tillatelsene upload, edit og private.</li><li>Lim inn tokenet. Det lagres bare i nettleseren din.</li><li>Velg tittel og hvem som kan se den, og trykk <span class="ui">Last opp</span>.</li></ol>
+<p>Greit å vite:</p>
+<ul><li>Du velger hvem som kan se den: bare du, bare de som har lenken, eller alle.</li><li>Videoen sendes i deler, og opplastingen prøver på nytt av seg selv hvis nettet faller ut et øyeblikk.</li><li>Vimeo trenger noen minutter på å behandle videoen etter opplastingen. Gratis Vimeo-kontoer har grenser for hvor mye du kan laste opp hver uke.</li></ul>
+<h2 id="know">Greit å vite</h2>
+<ul><li>Loops har vanligvis ikke lyd. <span class="ui">Behold lyd</span> er av som standard.</li><li>Korte loops gir jevn skrubbing og looping i VJ-programvare.</li><li>Hvis noe feiler, viser jobben årsaken. Se <a href="../../../no/guides/help/">Hjelp og feilsøking</a>.</li></ul></div><div class="note gfb"><strong>Mangler noe, eller er noe uklart?</strong> Si fra, så forbedrer jeg guiden. <button class="btn" type="button" data-spk-feedback>💬 Tilbakemelding</button></div><div class="pager"><a class="pg prev" href="../../../no/guides/video-dj/"><small>← Forrige</small>Video DJ</a><a class="pg next" href="../../../no/guides/queue/"><small>Neste →</small>Kø</a></div></article></div>
+</div></main>
+<footer><div class="wrap fcols"><div><div class="dgt">Mikserne</div><a href="../../../no/vj-mixer/">VJ-mikser</a><a href="../../../no/magic-mixer/">Magisk mikser</a><a href="../../../no/live-mixer/">Video DJ</a></div><div><div class="dgt">Spektronautilus</div><a href="../../../no/">Hjem</a><a href="../../../no/tools/">Verktøy</a><a href="../../../no/packs/">Loop-pakker</a><a href="../../../no/guides/" aria-current=page>Guider</a></div><div><div class="dgt">Mer</div><a href="../../../no/about/">Om</a><a href="../../../queue/">Kø<span class="qn" hidden></span></a></div></div><div class="wrap fbase"><span>Gratis verktøy for VJ-er, visuelle kunstnere og musikkelskere. Filene dine blir på enheten din.</span><span data-spk-feedback-slot></span><span>© Spektronautilus · MIT</span></div></footer>
+</body></html>
