@@ -34,6 +34,17 @@ Tested here only against a stand-in for ComfyUI (see Tests). The speed numbers b
 
 Uninstall: `~/.local/share/spektronautilus-nvidia/uninstall.sh` (add `--keep-model` to keep the 6.5 GB model for a later install).
 
+## Docker (all in one)
+
+The same, in one container: the site and its helper, ffmpeg, Video2X (AI upscaling and slow motion) and ComfyUI with the ReCaVSR nodes. Needs the NVIDIA driver and the [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html) on the computer.
+
+```bash
+docker compose up -d --build                      # the first build downloads several GB (PyTorch for CUDA)
+SPEKTRO_ACCEPT_MODEL=1 docker compose up -d       # also downloads the ReCaVSR model (6.5 GB, once, into the "models" volume)
+```
+
+Open **http://localhost:8765/**. Details: [DOCKER.md](DOCKER.md).
+
 ## How it works
 
 - Spektronautilus runs its usual small local server and sends the clip to ComfyUI (on `127.0.0.1:8188`), starts the ReCaVSR workflow and fetches the result. The progress bar follows ComfyUI as it works. **Stop** also stops the job in ComfyUI.
@@ -66,7 +77,7 @@ ComfyUI's log: `~/.local/share/spektronautilus-nvidia/comfyui.log`. If the norma
 ## Licences
 
 - This repository: MIT (see LICENSE), like Spektronautilus.
-- ComfyUI and the ReCaVSR nodes (GPL-3.0) are downloaded by the installer from their own repositories; they are not part of this repository.
+- ComfyUI and the ReCaVSR nodes (GPL-3.0) are downloaded by the installer (or the Docker build) from their own repositories; they are not part of this repository. The Docker image also contains Video2X (AGPL-3.0): if you publish the image, point to its source.
 - **The ReCaVSR model weights:** their makers ([kopper/ReCaVSR](https://huggingface.co/kopper/ReCaVSR)) state no licence. The installer downloads them to your computer for your own use and asks first. Spektronautilus does not include or share them. Check the makers' terms before using results commercially.
 
 ## Build and test

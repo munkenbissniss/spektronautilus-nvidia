@@ -1,0 +1,32 @@
+# Spektronautilus NVIDIA in Docker, all in one. Needs the NVIDIA driver and the NVIDIA Container Toolkit.
+#   docker compose up -d --build                    then open http://localhost:8765/
+#   SPEKTRO_ACCEPT_MODEL=1 docker compose up -d     also downloads the ReCaVSR model (6.5 GB, once)
+name: spektronautilus-nvidia
+services:
+  spektronautilus:
+    build:
+      context: .
+    image: spektronautilus-nvidia:latest
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${SPEKTRO_PORT:-8765}:8765"
+    environment:
+      SPEKTRO_ACCEPT_MODEL: ${SPEKTRO_ACCEPT_MODEL:-0}
+      SPEKTRO_HOSTS: ${SPEKTRO_HOSTS:-}
+      NVIDIA_DRIVER_CAPABILITIES: all
+    volumes:
+      - work:/work
+      - models:/models
+    tmpfs:
+      - /tmp
+    shm_size: 2gb
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+volumes:
+  work:
+  models:
